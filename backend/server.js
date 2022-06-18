@@ -1,4 +1,4 @@
-// dependencies: express, nodemon, dotenv
+// dependencies: express, nodemon, dotenv, bcryptjs, jsonwebtokens
 
 const express = require('express')
 const dotenv = require('dotenv').config()
@@ -9,6 +9,7 @@ connectDB()
 
 //routes
 const workoutRoutes = require('./routes/workouts')
+const userRoutes = require('./routes/users')
 
 // create express app
 const app = express()
@@ -24,6 +25,7 @@ next()
 
 // routes
 app.use('/api/workouts', workoutRoutes)
+app.use('/api/users', userRoutes)
 
 // listen for requests
 app.listen(process.env.PORT, () => {

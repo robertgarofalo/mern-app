@@ -9,8 +9,10 @@ const { getWorkouts,
         updateSingleWorkout
     } = require('../controllers/workoutController')
 
-router.route('/').get(getWorkouts).post(postSingleWorkout)
-router.route('/:id').get(getSingleWorkout).delete(deleteSingleWorkout).put(updateSingleWorkout)
+    const { protect } = require('../middleware/authMiddleware')
+
+router.route('/').get(protect, getWorkouts).post(protect, postSingleWorkout)
+router.route('/:id').get(protect, getSingleWorkout).delete(protect, deleteSingleWorkout).put(protect, updateSingleWorkout)
 
 // // GET all workouts
 // router.get('/', getWorkouts)
